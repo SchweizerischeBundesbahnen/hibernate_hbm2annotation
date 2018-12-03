@@ -1,6 +1,6 @@
 # What is this?
 This script *helps* you to migrate bigger projects from hibernate hbm.xml files to annotations.
-It is able to migrate most common annotations automatically, but not all, meaning the complicated part will be up to you to do be done manualy.
+It is able to migrate most common annotations automatically, but not all, meaning the complicated part will be up to you to do be done manually.
 It will just do the monkey work for you.
 
 In our repository, we were able to automate about 90% of the work, but you may find that your codebase is different.
@@ -24,21 +24,21 @@ There are two commands `analyse.php` and `migrate.php`
 
 ## Examples
 
-```{php}
+```{bash}
 php migrate.php --printWriteStats --hbmFilter="Betriebspunkt\.hbm"
 ```
 
-The `--hbmFilter` option accepts PHP-Regex (mostly PCRE) and applies it to the `.hbm.xml`-paths.
+The `--hbmFilter` option accepts PHP-Regex syntax and applies it to the `.hbm.xml`-paths.
 
 When using the `--hbmFilter` option be sure to run at least two files that are next to eachother in the hierarchy at the same time.
 The generation of `@AttributeOverride`-annotations might otherwise not work properly.
 
-```{php}
+```{bash}
 php migrate.php --printWriteStats --collectUnsupportedAnnoationsFile="C:/devsbb/tmp/annotations_not.txt"
 ```
 
 To add @Transient annotations to getters Hibernate should ignore
-```{php}
+```{bash}
 php migrate.php --addTransient
 ```
 
