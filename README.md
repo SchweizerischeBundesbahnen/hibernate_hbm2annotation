@@ -17,7 +17,7 @@ While migrating our own [SBB](https://github.com/SchweizerischeBundesbahnen) cod
 The commit history has been squashed to hide sensitive information. 
 
 # How to use this?
-See the short guide below for now. A wiki will be up later.
+Check out the [wiki](https://github.com/SchweizerischeBundesbahnen/hibernate_hbm2annotation/wiki) for a detailed guide and best practices.
 
 # Setup
 
