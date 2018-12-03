@@ -8,6 +8,17 @@ We still encountered a lot of manual work, but if your code already follows hibe
 
 The Imports will be addet but possibly not in the order as your IDE expects and a reformatting might be required.
 
+# Who did this?
+- Heiko Henning [@GreenRover](https://github.com/GreenRover)
+- Marius Schär [@Martyschaer](https://gitlab.com/martyschaer)
+- Christine Müller (no github account)
+
+While migrating our own [SBB](https://github.com/SchweizerischeBundesbahnen) codebase form hbm to annotations.
+The commit history has been squashed to hide sensitive information. 
+
+# How to use this?
+See the short guide below for now. A wiki will be up later.
+
 # Setup
 
 Copy config.dist.php to config.php and put the path to your java project into it.
