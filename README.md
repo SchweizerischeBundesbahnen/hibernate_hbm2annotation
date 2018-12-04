@@ -35,8 +35,8 @@ There are two commands `analyse.php` and `migrate.php`
 
 ## Examples
 
-```{bash}
-php migrate.php --printWriteStats --hbmFilter="Betriebspunkt\.hbm"
+```bash
+$ php migrate.php --printWriteStats --hbmFilter="Betriebspunkt\.hbm"
 ```
 
 The `--hbmFilter` option accepts PHP-Regex syntax and applies it to the `.hbm.xml`-paths.
@@ -44,18 +44,18 @@ The `--hbmFilter` option accepts PHP-Regex syntax and applies it to the `.hbm.xm
 When using the `--hbmFilter` option be sure to run at least two files that are next to eachother in the hierarchy at the same time.
 The generation of `@AttributeOverride`-annotations might otherwise not work properly.
 
-```{bash}
-php migrate.php --printWriteStats --collectUnsupportedAnnoationsFile="C:/devsbb/tmp/annotations_not.txt"
+```bash
+$ php migrate.php --printWriteStats --collectUnsupportedAnnoationsFile="C:/devsbb/tmp/annotations_not.txt"
 ```
 
 To add @Transient annotations to getters Hibernate should ignore
-```{bash}
-php migrate.php --addTransient
+```bash
+$ php migrate.php --addTransient
 ```
 
 The Script will generate some TODOs where it knows it cannot complete the task automatically. Search for them after running the script by:
-```{bash}
-git diff --name-only | xargs grep -n -A1 "// TODO" | grep -vP "(:\d*:|--)"
+```bash
+$ git diff --name-only | xargs grep -n -A1 "// TODO" | grep -vP "(:\d*:|--)"
 ```
 
 ## Manual preparatory work
