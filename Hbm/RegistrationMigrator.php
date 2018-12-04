@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Change registration from hbm to annotation class. 
+ * Search and replace in all $activatorFiles (defined in config.php)
+ * for:
+ *    .addResource("com.example/path/THE_CLASS_NAME.hbm.xml", classLoader
+ * and replace it by:
+ *    .addAnnotatedClass(THE_CLASS_NAME.class)
+ *
+ * If your framework wraps hibernate or dont looks like our,
+ * you may change this class to match your architecture.
+ **/
 class RegistrationMigrator {
 
     private $activatorFiles = array();
