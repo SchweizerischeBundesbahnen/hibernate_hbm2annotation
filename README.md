@@ -55,7 +55,7 @@ $ php migrate.php --addTransient
 
 The Script will generate some TODOs where it knows it cannot complete the task automatically. Search for them after running the script by:
 ```bash
-$ git diff --name-only | xargs grep -n -A1 "// TODO" | grep -vP "(:\d*:|--)"
+$ git diff --name-only | xargs grep -n -A1 "// TODO @HIB" | grep -vP "(:\d*:|--)"
 ```
 
 ## Manual preparatory work
