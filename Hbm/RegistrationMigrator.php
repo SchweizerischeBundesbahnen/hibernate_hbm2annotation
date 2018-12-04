@@ -8,8 +8,8 @@
  * and replace it by:
  *    .addAnnotatedClass(THE_CLASS_NAME.class)
  *
- * If your framework wraps hibernate or dont looks like our,
- * you may change this class to match your architecture.
+ * If your framework wraps hibernate or doesn't looks like ours,
+ * you may have to change this class to match your architecture.
  **/
 class RegistrationMigrator {
 
