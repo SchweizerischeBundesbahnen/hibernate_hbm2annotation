@@ -69,5 +69,5 @@ Also `public abstract getId()` is not allowed.
 
 ## Caching
 To improve the performce, this script will create to cache files, that can be deleted risk free.
-hbms.json: A list of all *.hbm files found in your code base.
-class2fileCache.json: Classname ot filepath map, even is the same simple class name was used multiple times.
+- hbms.json: A list of all *.hbm files found in your code base.
+- class2fileCache.json: Classname ot filepath map, even is the same simple class name was used multiple times.
