@@ -20,7 +20,6 @@ The commit history has been squashed to hide sensitive information.
 Check out the [wiki](https://github.com/SchweizerischeBundesbahnen/hibernate_hbm2annotation/wiki) for a detailed guide and best practices.
 
 # Setup
-
 Copy config.dist.php to config.php and put the path to your java project into it.
 
 To run you needs to use php >= 7.2
@@ -68,3 +67,7 @@ https://vladmihalcea.com/how-to-combine-the-hibernate-assigned-generator-with-a-
 
 Also `public abstract getId()` is not allowed.
 
+## Caching
+To improve the performce, this script will create two cache files, that can be deleted risk-free.
+- hbms.json: A list of all *.hbm files found in your code base.
+- class2fileCache.json: Classname to filepath map, even if the same simple class name was used multiple times.

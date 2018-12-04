@@ -7,16 +7,16 @@ require_once __DIR__ . './config.php';
 
 $shortopts = '';
 $longopts  = array(
-    'printColumOverWriteWarnings',
-    'printDetectedAnnotations',
-    'printWriteStats',
-    'printAnnotationCreationErrors',
+    'printColumOverWriteWarnings', // If you have annotations in abstract classes, you may find field definitions in different *.hbm files. If the definitions don't all match you will get a warning.
+    'printDetectedAnnotations', // Part of analyse.php. Prints global count of each annoation type.
+    'printWriteStats', // Print statistics (bash colored) for each hbm file about how many annotations could be converted.
+    'printAnnotationCreationErrors', // Print all annoation creation errors.
     'collectUnsupportedAnnoationsFile:', // File path to txt file to log all unsupported annotations to.
-    'hbmFilter:', // Regex to filter hbm files. Can be used to migrate bundle by bundle
-    'migrateHbmToClassRegistration', // Hbm files as java files with annotations needs to registerd in hibernate configuration.
-    'deleteHbmlFile',
-    'countManualAnnotatiosAsSuccesfull', // If a methode / fields as already any jpa or hibernate annotatios, count it in "printWriteStats" as sucessfull even if it was not changed.
-    'addTransient' // adds @Transient to any getter that does not have persistence annotations
+    'hbmFilter:', // Regex to filter hbm files. Can be used to migrate bundle by bundle.
+    'migrateHbmToClassRegistration', // Automatically register classes as annotated in hibernate configuration. Specify where in $activatorFiles
+    'deleteHbmlFile', // Delete HBM files after migrating them.
+    'countManualAnnotatiosAsSuccesfull', // If a method / field already has any jpa or hibernate annotations, count it in "printWriteStats" as sucessfull even if it was not changed by the script.
+    'addTransient' // adds @Transient to any getter that does not have persistence annotations.
 );
 $options = getopt($shortopts, $longopts);
 
