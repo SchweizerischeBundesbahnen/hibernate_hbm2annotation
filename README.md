@@ -6,7 +6,7 @@ It will just do the monkey work for you.
 In our repository, we were able to automate about 90% of the work, but you may find that your codebase is different.
 We still encountered a lot of manual work, but if your code already follows hibernate best practices, it should be easier.
 
-The Imports will be addet but possibly not in the order as your IDE expects and a reformatting might be required.
+The Imports will be added but possibly not in the order as your IDE expects and a reformatting might be required.
 
 # Who did this?
 - Heiko Henning [@GreenRover](https://github.com/GreenRover)
