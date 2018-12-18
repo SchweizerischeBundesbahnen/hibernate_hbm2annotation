@@ -129,4 +129,27 @@ class ItemDescription
     {
         $this->annotation = $annotation;
     }
+
+    /**
+     * @return string: the access-type. If none is given or it's ill-defined, PROPERTY is assumed.
+     */
+    public function getAccessType() : string
+    {
+        if(!empty($this->getAttributes()['access'])){
+            if(strtolower($this->getAttributes()['access'] === AccessType::FIELD)){
+                return AccessType::FIELD;
+            }
+        }
+        return AccessType::PROPERTY;
+    }
+
+}
+
+/**
+ * Describes the two access-types, FIELD and PROPERTY
+ */
+abstract class AccessType
+{
+    public const FIELD = "field";
+    public const PROPERTY = "property";
 }
