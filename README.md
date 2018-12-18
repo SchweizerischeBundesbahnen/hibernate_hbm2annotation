@@ -12,6 +12,9 @@ The Imports will be added but possibly not in the order as your IDE expects and 
 - Heiko Henning [@GreenRover](https://github.com/GreenRover)
 - Marius Schär [@Martyschaer](https://gitlab.com/martyschaer)
 - Christine Müller (no github account)
+- Jean-Claude Brantschen [@Clean-Coder](https://github.com/clean-coder)
+- Christoph Gächter [@gaechtec](https://github.com/gaechtec)
+- Reto Weingart [@rweingart](https://github.com/rweingart)
 
 While migrating our own [SBB](https://github.com/SchweizerischeBundesbahnen) codebase form hbm to annotations.
 The commit history has been squashed to hide sensitive information. 
