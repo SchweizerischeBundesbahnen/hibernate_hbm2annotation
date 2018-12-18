@@ -46,8 +46,6 @@ class ImportUtil
         'type' => 'org.hibernate.annotations.Type',
         'columntransformer' => 'org.hibernate.annotations.ColumnTransformer',
         'formula' => 'org.hibernate.annotations.Formula',
-        // Rcs Imports
-        'rcsdbsequence' => 'ch.sbb.aa.bb.cc.MyObsfuscatedClass',
     ];
 
     const IGNORED_ANNOTATIONS = [
