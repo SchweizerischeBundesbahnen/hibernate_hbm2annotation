@@ -1459,7 +1459,7 @@ class HbmParser
                 $this->writeDiscriminatorAnnotation($annotation);
             }
 
-            if ($tokenInfo->getUseCount() > 1) {
+            if ($tokenInfo->getUseCount() > 1 || $tokenInfo->isImplementedInSuperclass()) {
                 if ($annotation instanceof OverrideSupporting) {
                     $this->writeFieldOverrideAnnotation($annotation, $tokenInfo);
                 } else {
