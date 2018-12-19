@@ -109,7 +109,9 @@ class ImportUtil
                     ArrayUtils::add($toImport, $import);
                 }
             } else {
-                echo "WARN:: '$origForLoggging' isn't a known key. Please add it so imports can be generated!\n";
+                if(UNKNOWN_TYPE_WARNING){
+                    echo "WARN:: '$origForLoggging' isn't a known key. Please add it so imports can be generated!\n";
+                }
             }
         }
 
