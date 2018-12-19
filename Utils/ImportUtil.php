@@ -5,17 +5,20 @@ class ImportUtil
 {
     const IMPORT_MAPPING = [
         // JPA Imports
-        'access' => ['javax.persistence.Access', 'javax.persistence.AccessType'],
-        'associationoverride' => ['javax.persistence.AssociationOverride', 'javax.persistence.JoinColumn'],
+        'access' => 'javax.persistence.Access',
+        'accesstype' => 'javax.persistence.AccessType',
+        'associationoverride' => 'javax.persistence.AssociationOverride',
         'associationoverrides' => 'javax.persistence.AssociationOverrides',
-        'attributeoverride' => ['javax.persistence.AttributeOverride', 'javax.persistence.Column'],
+        'attributeoverride' => 'javax.persistence.AttributeOverride',
         'attributeoverrides' => 'javax.persistence.AttributeOverrides',
-        'basic' => ['javax.persistence.Basic', 'javax.persistence.FetchType'],
+        'basic' => 'javax.persistence.Basic',
+        'fetchtype' => 'javax.persistence.FetchType',
         'collectiontable' => 'javax.persistence.CollectionTable',
         'column' => 'javax.persistence.Column',
         'convert' => 'javax.persistence.Convert',
-        'discriminatorcolumn' => ['javax.persistence.DiscriminatorColumn', 'javax.persistence.DiscriminatorType'],
+        'discriminatorcolumn' => 'javax.persistence.DiscriminatorColumn',
         'discriminatorvalue' => 'javax.persistence.DiscriminatorValue',
+        'discriminatortype' => 'javax.persistence.DiscriminatorType',
         'embedded' => 'javax.persistence.Embedded',
         'embeddable' => 'javax.persistence.Embeddable',
         'entity' => 'javax.persistence.Entity',
@@ -40,7 +43,8 @@ class ImportUtil
         'fetch' => ['org.hibernate.annotations.Fetch', 'org.hibernate.annotations.FetchMode'],
         'genericgenerator' => 'org.hibernate.annotations.GenericGenerator',
         'immutable' => 'org.hibernate.annotations.Immutable',
-        'lazycollection' => ['org.hibernate.annotations.LazyCollection', 'org.hibernate.annotations.LazyCollectionOption'],
+        'lazycollection' => 'org.hibernate.annotations.LazyCollection',
+        'lazycollectionoption' => 'org.hibernate.annotations.LazyCollectionOption',
         'orderby' => 'org.hibernate.annotations.OrderBy',
         'parameter' => 'org.hibernate.annotations.Parameter',
         'type' => 'org.hibernate.annotations.Type',
@@ -83,9 +87,14 @@ class ImportUtil
     {
         $toImport = array();
         $matches = array();
-        preg_match_all('/^\h*(@(?<annotation>\w+)|import\s(?<import>[\w.]+);)/m', $allLines, $matches);
+        preg_match_all('/^\h*(@((?<annotation>\w+)(\((?<args>.+)\))*)|import\s(?<import>[\w.]+);)/m', $allLines, $matches);
         $matchedAnnotations = array_unique($matches['annotation']);
         $existingImports = array_unique($matches['import']);
+        $matchedAnnotationArgs = array_unique($matches['args']);
+
+        // extract the potential classes from the annotation arguments
+        $argClasses = self::extractClassesFromArgs($matchedAnnotationArgs);
+        ArrayUtils::addAll($matchedAnnotations, $argClasses); // parse them as you would annotations
         $matchedAnnotations = array_diff($matchedAnnotations, self::IGNORED_ANNOTATIONS);
         foreach ($matchedAnnotations as $matchedAnnotation) {
             $origForLoggging = $matchedAnnotation;
@@ -105,6 +114,17 @@ class ImportUtil
         }
 
         return $toImport;
+    }
+
+    private static function extractClassesFromArgs(array $args): array
+    {
+        $classes = array();
+        foreach ($args as $arg){
+            $matches = array();
+            preg_match_all('/[^\w](?<arg>[A-Z][a-z]([A-Za-z])+)(?<!Converter)[^\w]/', $arg, $matches);
+            ArrayUtils::addAll($classes, $matches['arg']);
+        }
+        return array_unique($classes);
     }
 
     /**
