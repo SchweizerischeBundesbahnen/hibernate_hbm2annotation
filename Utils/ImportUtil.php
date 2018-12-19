@@ -121,7 +121,7 @@ class ImportUtil
         $classes = array();
         foreach ($args as $arg){
             $matches = array();
-            preg_match_all('/[^\w](?<arg>[A-Z][a-z]([A-Za-z])+)(?<!Converter)[^\w]/', $arg, $matches);
+            preg_match_all('/(^|[^\w])(?<arg>[A-Z][a-z]([A-Za-z])+)(?<!Converter)[^\w]/', $arg, $matches);
             ArrayUtils::addAll($classes, $matches['arg']);
         }
         return array_unique($classes);
