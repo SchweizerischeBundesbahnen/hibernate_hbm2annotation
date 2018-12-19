@@ -121,7 +121,7 @@ class JavaClassFinder
                     echo '*';
                     if (!empty(self::$class2fileCache[$className])) {
                         self::$class2fileCache[$className][] = $javaFile[0];
-                    }else{
+                    } else {
                         self::$class2fileCache[$className] = array($javaFile[0]);
                     }
                 }
@@ -171,7 +171,7 @@ class JavaClassFinder
 
         if (array_key_exists($className, self::$class2fileCache)) {
             self::$class2fileCache[$this->className][] = $path;
-        }else{
+        } else {
             self::$class2fileCache[$this->className] = array($path);
         }
 
@@ -850,11 +850,11 @@ class JavaClassFinder
             if (!empty($imports)) {
                 sort($imports);
 
-                $imports = array_filter($imports, function ($import) use ($addedImports){
+                $imports = array_filter($imports, function ($import) use ($addedImports) {
                     return !in_array($import, $addedImports);
                 });
 
-                if(empty($imports)){
+                if (empty($imports)) {
                     continue;
                 }
 
@@ -864,7 +864,7 @@ class JavaClassFinder
         }
     }
 
-    private function detectImportGroups(array &$importGroups, array $neededImports): void 
+    private function detectImportGroups(array &$importGroups, array $neededImports): void
     {
         // Filter imports from known groups.
         foreach ($importGroups as $group) {
@@ -987,6 +987,11 @@ class JavaClassFinder
                 if (!ImportUtil::containsPersistenceAnnotations($annotationsAbove) && strpos($this->lines[$idx - 1], TodoAnnotation::IDENTIFIER) === false) {
                     $getters[$idx] = $line;
                 }
+            } else if (strpos($line, "public static class CompositeKey implements Serializable") !== false) {
+                // this is a workaround for Composite-IDs, as the getters for the ID components
+                // don't require annotations, but also cannot be marked @Transient.
+                // This workaround requires the CompositeKey inner class to be the last thing in the class.
+                break;
             }
         }
 
@@ -1008,7 +1013,7 @@ class JavaClassFinder
         return $count;
     }
 
-    private function findWhitespacePrefix(string $line) : string
+    private function findWhitespacePrefix(string $line): string
     {
         $matches = array();
         preg_match('/^(?<prefix>\h*).+$/', $line, $matches);
