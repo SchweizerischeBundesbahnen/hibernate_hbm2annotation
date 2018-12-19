@@ -52,7 +52,10 @@ abstract class Annotation
 
         if ($isOnField) {
             // if we use Field Access, we need to explicitly specify it
-            $annotationComponents[] = '@Access(AccessType.FIELD)';
+            if($this->itemDesc->getAccessType() !== AccessType::FIELD){
+                // we only set this if it's not explicitly specified already.
+                $annotationComponents[] = '@Access(AccessType.FIELD)';
+            }
             if ($isIdAnnotation) {
                 // hibernate assumes the AccessType used on ID for every  other field
                 // thus we need to set an explicit default

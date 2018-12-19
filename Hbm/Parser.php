@@ -1274,7 +1274,12 @@ class HbmParser
 
         // attempt to find a token in different likely permutations (is/get prefix, different case writing)
         try {
-            $tokenInfo = $this->getMethodeInfo($this->javaClass, $itemDesc->getAnnotation()->getMethodeName());
+            if($itemDesc->getAccessType() === AccessType::FIELD){
+                // the hbm specifies access=field, thus we first try to find a field.
+                $tokenInfo = $this->getFieldInfo($this->javaClass, $itemDesc->getAnnotation()->getName());
+            }else{
+                $tokenInfo = $this->getMethodeInfo($this->javaClass, $itemDesc->getAnnotation()->getMethodeName());
+            }
         } catch (Exception $e1) {
             try {
                 $tokenInfo = $this->getMethodeInfo($this->javaClass, $itemDesc->getAnnotation()->getMethodeName(true, true));
