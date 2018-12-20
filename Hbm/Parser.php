@@ -1459,7 +1459,7 @@ class HbmParser
                 $this->writeDiscriminatorAnnotation($annotation);
             }
 
-            if ($tokenInfo->getUseCount() > 1 || $tokenInfo->isImplementedInSuperclass()) {
+            if ($this->shouldOverride($tokenInfo)) {
                 if ($annotation instanceof OverrideSupporting) {
                     $this->writeFieldOverrideAnnotation($annotation, $tokenInfo);
                 } else {
@@ -1482,6 +1482,18 @@ class HbmParser
         }
 
         return false;
+    }
+
+    /**
+     * Checks whether an override annotation should be generated, given the config option OVERRIDE_STRATEGY.
+     */
+    private function shouldOverride(TokenInfo $tokenInfo) : bool
+    {
+        if(OVERRIDE_STRATEGY === OverrideStrategyOptions::COUNT){
+            return ($tokenInfo->getUseCount() > 1);
+        }else{
+            return $tokenInfo->isImplementedInSuperclass();
+        }
     }
 
     private function writeFieldOverrideAnnotation(Annotation $annotation, TokenInfo $tokenInfo): void

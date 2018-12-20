@@ -30,6 +30,8 @@ if (!empty(COLLECT_UNSUPPORTED_ANNOTATIONS)) {
     file_put_contents(COLLECT_UNSUPPORTED_ANNOTATIONS, '');
 }
 
+define('OVERRIDE_STRATEGY', $overrideStrategy);
+
 JavaClassFinder::fillFileCache($rootFilePath);
 $converter = new HbmConverter($rootFilePath);
 $converter->iterateFiles(0, empty($options['hbmFilter']) ? null : $options['hbmFilter']);
