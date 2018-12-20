@@ -16,17 +16,21 @@ $longopts  = array(
     'migrateHbmToClassRegistration', // Automatically register classes as annotated in hibernate configuration. Specify where in $activatorFiles
     'deleteHbmlFile', // Delete HBM files after migrating them.
     'countManualAnnotatiosAsSuccesfull', // If a method / field already has any jpa or hibernate annotations, count it in "printWriteStats" as sucessfull even if it was not changed by the script.
-    'addTransient' // adds @Transient to any getter that does not have persistence annotations.
+    'addTransient', // adds @Transient to any getter that does not have persistence annotations.
+    'unknownTypeWarning', // emits warning when encountering a type no import is known for
 );
 $options = getopt($shortopts, $longopts);
 
 define('PRINT_COLUMN_OVER_WRITE_WANINGS', isset($options['printColumOverWriteWarnings']));
 define('PRINT_ANNOTATION_CREATION_ERRORS', isset($options['printAnnotationCreationErrors']));
 define('ADD_TRANSIENT', isset($options['addTransient']));
+define('UNKNOWN_TYPE_WARNING', isset($options['unknownTypeWarning']));
 define('COLLECT_UNSUPPORTED_ANNOTATIONS', isset($options['collectUnsupportedAnnoationsFile']) ? $options['collectUnsupportedAnnoationsFile'] : null);
 if (!empty(COLLECT_UNSUPPORTED_ANNOTATIONS)) {
     file_put_contents(COLLECT_UNSUPPORTED_ANNOTATIONS, '');
 }
+
+define('OVERRIDE_STRATEGY', $overrideStrategy);
 
 JavaClassFinder::fillFileCache($rootFilePath);
 $converter = new HbmConverter($rootFilePath);

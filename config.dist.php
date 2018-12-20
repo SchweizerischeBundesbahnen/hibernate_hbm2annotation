@@ -19,3 +19,10 @@ $activatorFiles = array(
 $typeToConverter = array(
     // 'ch.xxxx.common.db.UserTypeDate' => 'ch.xxxx.common.db.DateConverter',
 );
+
+// Defines when the script generates an Attribute/AssociationOverride-Annotation.
+// HIERARCHY may generate unnecessary overrides, but is generally more compatible and should be used.
+// HIERARCHY is assumed as default if nothing else is specified or the config is malformed.
+// if you use COUNT, be sure to migrate all the children of a particular class at the same time, otherwise not all Overrides will be generated
+#$overrideStrategy="COUNT";     // generated when a property which is defined in a parent class is present in two or more child classes.
+$overrideStrategy="HIERARCHY"; //  generated when a property which is defined in a parent class is present in a child class (always).
