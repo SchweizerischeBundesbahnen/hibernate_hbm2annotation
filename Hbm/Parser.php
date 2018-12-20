@@ -5,6 +5,7 @@ require_once __DIR__ . '/../Annotation/Abstract.php';
 require_once __DIR__ . '/../Annotation/Table.php';
 require_once __DIR__ . '/../Java/ClassFinder.php';
 require_once __DIR__ . '/../Utils/ClassUtils.php';
+require_once __DIR__ . '/../Utils/ConfigUtil.php';
 
 class HbmParser
 {
