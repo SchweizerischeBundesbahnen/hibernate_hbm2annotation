@@ -987,7 +987,7 @@ class JavaClassFinder
                 if (!ImportUtil::containsPersistenceAnnotations($annotationsAbove) && strpos($this->lines[$idx - 1], TodoAnnotation::IDENTIFIER) === false) {
                     $getters[$idx] = $line;
                 }
-            } else if (strpos($line, "public static class CompositeKey implements Serializable") !== false) {
+            } else if (strpos($line, "static class") !== false && strpos($line, "implements Serializable") !== false) {
                 // this is a workaround for Composite-IDs, as the getters for the ID components
                 // don't require annotations, but also cannot be marked @Transient.
                 // This workaround requires the CompositeKey inner class to be the last thing in the class.
