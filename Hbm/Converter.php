@@ -322,11 +322,11 @@ class HbmConverter
         $javaFiles = file_get_contents($cachePath);
         $javaClassName2Path = json_decode($javaFiles, true);
         $count = 0;
-        foreach ($javaClassName2Path as $class => $paths){
-            foreach ($paths as $path){
-                $classInstance = new JavaClassFinder($this->rootFilePath, $class, $path);
-                $count += $classInstance->addTransient();
-            }
+        /*@var $parser HbmParser*/
+        foreach($this->parsers as $parser){
+            /*@var $class JavaClassFinder*/
+            $class = $parser->getJavaClass();
+            $count += $class->addTransient();
         }
         echo sprintf("Generated %d @Transient annotations\n", $count);
     }
