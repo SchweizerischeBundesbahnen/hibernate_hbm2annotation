@@ -410,8 +410,7 @@ class JavaClassFinder
                 continue;
             }
 
-            // }) can occur when grouping annotations, such as @AttributeOverrides({...})
-            if (substr($line, 0, 1) === '@' || preg_match('/^}\)$/', $line) === 1) {
+            if ($this->isAnnotation($line)) {
                 $annotations[] = $line;
                 continue;
             }
@@ -426,6 +425,17 @@ class JavaClassFinder
         }
 
         return implode("\n", $annotations);
+    }
+
+    /**
+     * Does the given line start with:
+     * - /@/ (a normal annotation)
+     * - /})/ (the end of @AttributeOverride)
+     * - /+ "/ (continuation of @Formula)
+     */
+    private function isAnnotation(string $line): bool
+    {
+        return (preg_match('/^\h*(@|}\)|\+\h*")/', $line) === 1);
     }
 
     private function isComment($line): bool
