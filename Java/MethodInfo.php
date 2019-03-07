@@ -1,5 +1,5 @@
 <?php
-require_once 'TokenInfo.php';
+require_once __DIR__ . '/TokenInfo.php';
 
 class MethodInfo extends TokenInfo
 {

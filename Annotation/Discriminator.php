@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . './OverrideSupporting.php';
-require_once __DIR__ . './VerifyBeforeWriteColumn.php';
+require_once __DIR__ . '/OverrideSupporting.php';
+require_once __DIR__ . '/VerifyBeforeWriteColumn.php';
 
 class DiscriminatorAnnotation extends Annotation
 {
