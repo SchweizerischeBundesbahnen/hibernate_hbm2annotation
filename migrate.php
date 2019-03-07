@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . './Hbm/Converter.php';
-require_once __DIR__ . './Hbm/RegistrationMigrator.php';
-require_once __DIR__ . './Java/ClassFinder.php';
+require_once __DIR__ . '/Hbm/Converter.php';
+require_once __DIR__ . '/Hbm/RegistrationMigrator.php';
+require_once __DIR__ . '/Java/ClassFinder.php';
 
-require_once __DIR__ . './config.php';
+require_once __DIR__ . '/config.php';
 
 $shortopts = '';
 $longopts  = array(

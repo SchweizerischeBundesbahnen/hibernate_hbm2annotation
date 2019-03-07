@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . './OverrideSupporting.php';
-require_once __DIR__ . './Property.php';
+require_once __DIR__ . '/OverrideSupporting.php';
+require_once __DIR__ . '/Property.php';
 
 class ComponentAnnotation extends OverrideSupporting implements VerifyBeforeWriteAnnotation
 {

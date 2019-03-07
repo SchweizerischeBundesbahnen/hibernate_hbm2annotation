@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . './Abstract.php';
+require_once __DIR__ . '/Abstract.php';
 
 class PlaceboAnnotation extends Annotation {
     public function generateAnnotationComponents(bool $removeTablePrefix = false): ?array
