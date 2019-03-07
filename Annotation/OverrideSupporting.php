@@ -1,5 +1,5 @@
 <?php
-require_once 'Abstract.php';
+require_once __DIR__ . '/Abstract.php';
 
 abstract class OverrideSupporting extends Annotation
 {

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . './JoinTable.php';
+require_once __DIR__ . '/JoinTable.php';
 
 class SetAnnotation extends Annotation implements VerifyBeforeWriteAnnotation
 {
